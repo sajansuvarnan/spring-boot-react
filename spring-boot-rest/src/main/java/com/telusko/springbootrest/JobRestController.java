@@ -3,7 +3,6 @@ package com.telusko.springbootrest;
 import com.telusko.springbootrest.model.JobPost;
 import com.telusko.springbootrest.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,8 +27,25 @@ public class JobRestController {
     }
 
     @PostMapping("jobPost")
-    public void addJob(@RequestBody JobPost jobPost)
+    public JobPost addJob(@RequestBody JobPost jobPost)
     {
         service.addJob(jobPost);
+        return service.getJob(jobPost.getPostId());
+
+    }
+
+    @PutMapping("jobPost")
+    public JobPost updateJob(@RequestBody JobPost jobPost)
+    {
+        service.updateJob(jobPost);
+
+        return service.getJob(jobPost.getPostId());
+    }
+
+    @DeleteMapping("jobPost/{postId}")
+    public String deleteJob(@PathVariable("postId") int postId)
+    {
+        service.deleteJob(postId);
+        return "Data Has been deleted";
     }
 }

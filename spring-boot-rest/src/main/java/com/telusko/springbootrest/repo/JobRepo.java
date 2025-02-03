@@ -3,10 +3,7 @@ package com.telusko.springbootrest.repo;
 import com.telusko.springbootrest.model.JobPost;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Repository
 public class JobRepo {
@@ -45,5 +42,35 @@ public class JobRepo {
         //System.out.println("not reached");
         return null;
 
+    }
+
+    public void updateJob(JobPost jobPost) {
+
+        for(JobPost jobPost2: jobs)
+
+            if(jobPost.getPostId() == jobPost2.getPostId())
+            {
+                jobPost2.setPostProfile(jobPost.getPostProfile());
+                jobPost2.setPostDesc(jobPost.getPostDesc());
+                jobPost2.setPostTechStack(jobPost.getPostTechStack());
+                jobPost2.setReqExperience(jobPost.getReqExperience());
+            }
+
+    }
+
+    public void deleteJob(int postId) {
+
+        Iterator<JobPost> iterator = jobs.iterator();
+        while(iterator.hasNext())
+        {
+            JobPost jobPost = iterator.next();
+
+            if(jobPost.getPostId() ==postId)
+            {
+              iterator.remove();
+              break;
+            }
+
+        }
     }
 }
