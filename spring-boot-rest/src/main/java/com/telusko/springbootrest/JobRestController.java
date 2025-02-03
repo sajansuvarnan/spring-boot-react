@@ -20,18 +20,19 @@ public class JobRestController {
         return service.getAllJobs();
     }
 
-    @GetMapping("jobPost/{postId}")
+    //it only shows the output in json
+    @GetMapping(path = "jobPost/{postId}", produces = {"application/json"})
     public JobPost getJob(@PathVariable("postId") int postId)
     {
         return service.getJob(postId);
     }
 
-    @PostMapping("jobPost")
+    //
+    @PostMapping(path= "jobPost", consumes = {"application/xml"})
     public JobPost addJob(@RequestBody JobPost jobPost)
     {
         service.addJob(jobPost);
         return service.getJob(jobPost.getPostId());
-
     }
 
     @PutMapping("jobPost")
