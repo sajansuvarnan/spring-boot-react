@@ -1,10 +1,18 @@
 package com.telusko.springbootrest.repo;
 
 import com.telusko.springbootrest.model.JobPost;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
 
+@Repository
+public interface JobRepo extends JpaRepository<JobPost,Integer> {
+}
+
+
+/*
+
+//code without connecting database
 @Repository
 public class JobRepo {
 
@@ -67,10 +75,11 @@ public class JobRepo {
 
             if(jobPost.getPostId() ==postId)
             {
-              iterator.remove();
-              break;
+                iterator.remove();
+                break;
             }
 
         }
     }
 }
+*/

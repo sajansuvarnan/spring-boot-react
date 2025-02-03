@@ -27,8 +27,8 @@ public class JobRestController {
         return service.getJob(postId);
     }
 
-    //
-    @PostMapping(path= "jobPost", consumes = {"application/xml"})
+    //we can update it to xml as well
+    @PostMapping(path= "jobPost", consumes = {"application/json"})
     public JobPost addJob(@RequestBody JobPost jobPost)
     {
         service.addJob(jobPost);
@@ -48,5 +48,12 @@ public class JobRestController {
     {
         service.deleteJob(postId);
         return "Data Has been deleted";
+    }
+
+    @GetMapping("load")
+    public String loadData()
+    {
+        service.loadData();
+        return "Success";
     }
 }
