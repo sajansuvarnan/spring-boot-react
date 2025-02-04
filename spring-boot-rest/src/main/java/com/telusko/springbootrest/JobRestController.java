@@ -50,6 +50,12 @@ public class JobRestController {
         return "Data Has been deleted";
     }
 
+    @GetMapping("jobPost/keyword/{keyword}")
+    public List<JobPost> searchByKeyword(@PathVariable("keyword") String keyword)
+    {
+        return service.search(keyword);
+    }
+
     @GetMapping("load")
     public String loadData()
     {
